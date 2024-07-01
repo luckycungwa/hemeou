@@ -1,19 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+.hero {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,17 +15,30 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-image: url(https://images.pexels.com/photos/4252525/pexels-photo-4252525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
 }
 
-.App-link {
-  color: #61dafb;
+Chip {
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.truncate {
+  width: auto;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  --max-lines: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--max-lines);
+  -webkit-box-orient: vertical;
+}
+.truncate-1 {
+  width: auto;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  --max-lines: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--max-lines);
+  -webkit-box-orient: vertical;
 }

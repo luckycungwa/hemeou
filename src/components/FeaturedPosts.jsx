@@ -1,67 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Button,
   Card,
   CardBody,
   CardFooter,
+  CardHeader,
   Chip,
+  Divider,
   Image,
   Link,
-  Pagination,
 } from "@nextui-org/react";
-import HeroSection from "../components/HeroSection";
-import SearchBar from "../components/SearchBar";
+import { FiArrowUpRight } from "react-icons/fi";
 
-const Blog = () => {
-  const [searchValue, setSearchValue] = useState("");
-
-  const FilterItems = () => {
-    return (
-      <div className="flex flex-wrap gap-4">
-        <Chip
-          color="primary"
-          bordered
-          onPress={() => console.log("Pressed")}
-          css={{ p: "0.5rem", height: "auto" }}
-        >
-          <p className="text-sm">All</p>
-        </Chip>
-        <Chip
-          color="primary"
-          bordered
-          onPress={() => console.log("Pressed")}
-          css={{ p: "0.5rem", height: "auto" }}
-        >
-          <p className="text-sm">Music</p>
-        </Chip>
-        <Chip
-          color="primary"
-          bordered
-          onPress={() => console.log("Pressed")}
-          css={{ p: "0.5rem", height: "auto" }}
-        >
-          <p className="text-sm">Productivity</p>
-        </Chip>
-        <Chip
-          color="primary"
-          bordered
-          onPress={() => console.log("Pressed")}
-          css={{ p: "0.5rem", height: "auto" }}
-        >
-          <p className="text-sm">Entertainment</p>
-        </Chip>
-        <Chip
-          color="primary"
-          bordered
-          onPress={() => console.log("Pressed")}
-          css={{ p: "0.5rem", height: "auto" }}
-        >
-          <p className="text-sm">Movies</p>
-        </Chip>
-      </div>
-    );
-  };
-
+const FeaturedPosts = () => {
   const list = [
     {
       title: "Orange",
@@ -99,53 +49,39 @@ const Blog = () => {
       date: "2022-01-01",
       tags: "Movies",
     },
+   
   ];
 
-  const handleViewPost = () => {
-    window.location.href = "/post";
-    console.log("Viewing post");
-
-  };
-
-  // search bar stuff
-  const handleSearch = () => {
-    // Perform search action
-    console.log("Searching for:", searchValue);
-  };
-
-  const handleInputChange = (value) => {
-    setSearchValue(value);
-  };
   return (
     <>
-      <HeroSection />
-      <div className="w-auto py-8 px-32">
+      <div className="w-auto flex flex-col items-center gap-4 py-8">
         {/* Grid Heading */}
-        <div className="w-full flex flex-col justify-center items-center my-8">
-          <p className="text-xl font-bold text-center uppercase">
-            Latest Posts
-          </p>
-          <p>See the Latest Posts</p>
-        </div>
-        {/* Filter bar component */}
-        <div className="w-full flex justify-between items-center py-8">
-          <FilterItems />
-          <SearchBar onClick={handleSearch} onInputChange={handleInputChange} />
+        <div className="w-full flex flex-col justify-between items-center my-0">
+          <div className="w-full flex flex-row justify-between mb-1 ">
+            <p className="text-2xl font-bold">Featured Posts</p>
+            <Link
+              href="/blog"
+              className="text-lg flex items-center gap-2 text-blue-600 hover:text-blue-800"
+            >
+              See more
+              <FiArrowUpRight />
+            </Link>
+          </div>
+          <Divider className="bg-black" />
         </div>
 
         {/* Grid layout */}
-        <div className="w-full gap-4 grid grid-cols-1 sm:grid-cols-3">
+        <div className="w-full gap-4 grid grid-cols-1 sm:grid-cols-4">
           {list.map((item, index) => (
             <Card
               shadow="sm"
               key={index}
               isPressable
-              onPress={handleViewPost}
+              onPress={() => console.log("item pressed")}
+              className=" cursor-pointer"
             >
               <CardBody className="overflow-visible p-0">
-                <Chip size="sm" className="absolute top-2 left-2 z-10">
-                  {item.tags}
-                </Chip>
+              <Chip size="sm" className="absolute top-2 left-2 z-10">{item.tags}</Chip>
                 <Image
                   shadow="sm"
                   radius="lg"
@@ -154,23 +90,21 @@ const Blog = () => {
                   className="w-full object-cover h-[140px] z-0"
                   src={item.imgUrl}
                 />
+
+                
               </CardBody>
               <CardFooter className="flex flex-col text-small items-start gap-2">
                 <p className="font-bold text-lg">{item.title}</p>
-                <p className="text-default-500 text-start truncate">
-                  {item.description}
-                </p>
+                <p className="text-default-500 text-start truncate">{item.description}</p>
                 <p className="text-default-400 text-start"> {item.date}</p>
+                
               </CardFooter>
             </Card>
           ))}
-        </div>
-        <div className="w-full flex justify-center items-center py-8">
-          <Pagination showControls total={10} initialPage={1} />
         </div>
       </div>
     </>
   );
 };
 
-export default Blog;
+export default FeaturedPosts;

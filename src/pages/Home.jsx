@@ -1,9 +1,18 @@
 import React from 'react';
+import HeroSection from '../components/HeroSection';
+import FeaturedPosts from '../components/FeaturedPosts';
+import RecentPosts from '../components/RecentPosts';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className='App'>
+      <HeroSection />
+      <div className=' px-8 py-8'>
+        <FeaturedPosts
+        />
+        <RecentPosts />
+      </div>
+      
     </div>
   );
 }
